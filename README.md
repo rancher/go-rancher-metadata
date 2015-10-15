@@ -1,1 +1,1 @@
-# go-rancher-metadata
+# Go bindings for Rancher-metadata service
