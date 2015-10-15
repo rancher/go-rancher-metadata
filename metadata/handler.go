@@ -7,15 +7,15 @@ import (
 	"net/http"
 )
 
-type MetadataHandler struct {
+type Handler struct {
 	url string
 }
 
-func NewHandler(url string) MetadataHandler {
-	return MetadataHandler{url}
+func NewHandler(url string) Handler {
+	return Handler{url}
 }
 
-func (m *MetadataHandler) SendRequest(path string) ([]byte, error) {
+func (m *Handler) SendRequest(path string) ([]byte, error) {
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", m.url+"/latest"+path, nil)
 	req.Header.Add("Accept", "application/json")
@@ -31,7 +31,7 @@ func (m *MetadataHandler) SendRequest(path string) ([]byte, error) {
 	return body, nil
 }
 
-func (m *MetadataHandler) GetVersion() (string, error) {
+func (m *Handler) GetVersion() (string, error) {
 	resp, err := m.SendRequest("/version")
 	if err != nil {
 		return "", err
@@ -39,63 +39,60 @@ func (m *MetadataHandler) GetVersion() (string, error) {
 	return string(resp[:]), nil
 }
 
-func (m *MetadataHandler) GetSelfStack() (Stack, error) {
+func (m *Handler) GetSelfStack() (Stack, error) {
 	resp, err := m.SendRequest("/self/stack")
 	var stack Stack
 	if err != nil {
 		return stack, err
 	}
-	err = json.Unmarshal(resp, &stack)
-	if err != nil {
+
+	if err = json.Unmarshal(resp, &stack)err != nil {
 		return stack, err
 	}
 
 	return stack, nil
 }
 
-func (m *MetadataHandler) GetServices() ([]Service, error) {
+func (m *Handler) GetServices() ([]Service, error) {
 	resp, err := m.SendRequest("/services")
 	var services []Service
 	if err != nil {
 		return services, err
 	}
 
-	err = json.Unmarshal(resp, &services)
-	if err != nil {
+	if err = json.Unmarshal(resp, &services); err != nil {
 		return services, err
 	}
 	return services, nil
 }
 
-func (m *MetadataHandler) GetContainers() ([]Container, error) {
+func (m *Handler) GetContainers() ([]Container, error) {
 	resp, err := m.SendRequest("/containers")
 	var containers []Container
 	if err != nil {
 		return containers, err
 	}
 
-	err = json.Unmarshal(resp, &containers)
-	if err != nil {
+	if err = json.Unmarshal(resp, &containers); err != nil {
 		return containers, err
 	}
 	return containers, nil
 }
 
-func (m *MetadataHandler) GetHosts() ([]Host, error) {
+func (m *Handler) GetHosts() ([]Host, error) {
 	resp, err := m.SendRequest("/hosts")
 	var hosts []Host
 	if err != nil {
 		return hosts, err
 	}
 
-	err = json.Unmarshal(resp, &hosts)
-	if err != nil {
+	if err = json.Unmarshal(resp, &hosts); err != nil {
 		return hosts, err
 	}
 	return hosts, nil
 }
 
-func (m *MetadataHandler) GetHost(UUID string) (Host, error) {
+func (m *Handler) GetHost(UUID string) (Host, error) {
 	var host Host
 	hosts, err := m.GetHosts()
 	if err != nil {
