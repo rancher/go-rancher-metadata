@@ -46,7 +46,7 @@ func (m *Handler) GetSelfStack() (Stack, error) {
 		return stack, err
 	}
 
-	if err = json.Unmarshal(resp, &stack)err != nil {
+	if err = json.Unmarshal(resp, &stack); err != nil {
 		return stack, err
 	}
 
