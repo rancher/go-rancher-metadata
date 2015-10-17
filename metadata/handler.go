@@ -39,6 +39,20 @@ func (m *Handler) GetVersion() (string, error) {
 	return string(resp[:]), nil
 }
 
+func (m *Handler) GetSelfContainer() (Container, error) {
+	resp, err := m.SendRequest("/self/container")
+	var container Container
+	if err != nil {
+		return container, err
+	}
+
+	if err = json.Unmarshal(resp, &container); err != nil {
+		return container, err
+	}
+
+	return container, nil
+}
+
 func (m *Handler) GetSelfStack() (Stack, error) {
 	resp, err := m.SendRequest("/self/stack")
 	var stack Stack
