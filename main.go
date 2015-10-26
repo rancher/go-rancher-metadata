@@ -4,11 +4,11 @@ import (
 	"time"
 
 	log "github.com/Sirupsen/logrus"
-	"github.com/rancher/go-rancher-metadata/metadata/latest"
+	"github.com/rancher/go-rancher-metadata/metadata"
 )
 
 const (
-	metadataUrl = "http://rancher-metadata"
+	metadataUrl = "http://rancher-metadata/latest"
 )
 
 func main() {
