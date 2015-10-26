@@ -17,7 +17,7 @@ func NewClient(url string) *Client {
 
 func (m *Client) SendRequest(path string) ([]byte, error) {
 	client := &http.Client{}
-	req, err := http.NewRequest("GET", m.url+"/latest"+path, nil)
+	req, err := http.NewRequest("GET", m.url+path, nil)
 	req.Header.Add("Accept", "application/json")
 	resp, err := client.Do(req)
 	if err != nil {
