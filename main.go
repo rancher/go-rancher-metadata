@@ -1,10 +1,3 @@
-# Go bindings for Rancher-metadata
-
-This library is incomplete, but implements a variety of calls against  [rancher-metadata](https://github.com/rancher/rancher-metadata) service
-
-#Example usage
-
-```go
 package main
 
 import (
@@ -19,11 +12,10 @@ const (
 )
 
 func main() {
+	m := metadata.NewClient(metadataUrl)
 
-  m := metadata.NewClient(metadataUrl)
-  
-  version := "init"
-  
+	version := "init"
+
 	for {
 		newVersion, err := m.GetVersion()
 		if err != nil {
@@ -31,10 +23,9 @@ func main() {
 		} else if version == newVersion {
 			log.Debug("No changes in metadata version")
 		} else {
-			log.Debugf("Metadata Version has been changed. Old version: %s. New version: %s.", version, newVersion)
+			log.Debugf("Metadata version has changed, oldVersion=[%s], newVersion=[%s]", version, newVersion)
 			version = newVersion
 		}
 		time.Sleep(5 * time.Second)
 	}
 }
-```
