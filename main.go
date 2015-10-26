@@ -4,7 +4,7 @@ import (
 	"time"
 
 	log "github.com/Sirupsen/logrus"
-	"github.com/rancher/go-rancher-metadata/metadata"
+	"github.com/rancher/go-rancher-metadata/metadata/latest"
 )
 
 const (
