@@ -53,6 +53,20 @@ func (m *Client) GetSelfContainer() (Container, error) {
 	return container, nil
 }
 
+func (m *Client) GetSelfService() (Service, error) {
+	resp, err := m.SendRequest("/self/service")
+	var service Service
+	if err != nil {
+		return service, err
+	}
+
+	if err = json.Unmarshal(resp, &service); err != nil {
+		return service, err
+	}
+
+	return service, nil
+}
+
 func (m *Client) GetSelfStack() (Stack, error) {
 	resp, err := m.SendRequest("/self/stack")
 	var stack Stack
