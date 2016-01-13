@@ -33,6 +33,11 @@ func (m *Client) SendRequest(path string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	if resp.StatusCode != 200 {
+		return nil, fmt.Errorf("Error %v accessing %v path", resp.StatusCode, path)
+	}
+
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
