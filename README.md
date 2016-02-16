@@ -4,6 +4,7 @@ This library is incomplete, but implements a variety of calls against  [rancher-
 
 #Example usage
 
+test 
 ```go
 package main
 
