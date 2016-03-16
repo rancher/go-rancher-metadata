@@ -40,9 +40,10 @@ type Container struct {
 }
 
 type Host struct {
-	Name    string            `json:"name"`
-	AgentIP string            `json:"agent_ip"`
-	HostId  int               `json:"host_id"`
-	Labels  map[string]string `json:"labels"`
-	UUID    string            `json:"uuid"`
+	Name     string            `json:"name"`
+	AgentIP  string            `json:"agent_ip"`
+	HostId   int               `json:"host_id"`
+	Labels   map[string]string `json:"labels"`
+	UUID     string            `json:"uuid"`
+	Hostname string            `json:"hostname"`
 }
