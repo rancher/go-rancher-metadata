@@ -24,6 +24,7 @@ type Service struct {
 	Links       map[string]string      `json:"links"`
 	Metadata    map[string]interface{} `json:"metadata"`
 	Token       string                 `json:"token"`
+	Fqdn        string                 `json:"fqdn"`
 }
 
 type Container struct {
@@ -37,6 +38,7 @@ type Container struct {
 	CreateIndex int               `json:"create_index"`
 	HostUUID    string            `json:"host_uuid"`
 	UUID        string            `json:"uuid"`
+	State       string            `json:"state"`
 	HealthState string            `json:"health_state"`
 	ExternalId  string            `json:"external_id"`
 }
