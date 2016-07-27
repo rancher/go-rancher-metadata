@@ -39,6 +39,7 @@ type Container struct {
 	UUID        string            `json:"uuid"`
 	HealthState string            `json:"health_state"`
 	ExternalId  string            `json:"external_id"`
+	State       string            `json:"state"`
 }
 
 type Host struct {
