@@ -7,6 +7,15 @@ type Stack struct {
 	Services        []Service `json:"services"`
 }
 
+type HealthCheck struct {
+	HealthyThreshold   int    `json:"healthy_threshold"`
+	Interval           int    `json:"interval"`
+	Port               int    `json:"port"`
+	RequestLine        string `json:"request_line"`
+	ResponseTimeout    int    `json:"response_timeout"`
+	UnhealthyThreshold int    `json:"unhealthy_threshold"`
+}
+
 type Service struct {
 	Scale       int                    `json:"scale"`
 	Name        string                 `json:"name"`
@@ -25,6 +34,7 @@ type Service struct {
 	Metadata    map[string]interface{} `json:"metadata"`
 	Token       string                 `json:"token"`
 	Fqdn        string                 `json:"fqdn"`
+	HealthCheck HealthCheck            `json:"health_check"`
 }
 
 type Container struct {
