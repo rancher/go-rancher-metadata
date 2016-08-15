@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-type MetadataClient interface {
+type Client interface {
 	OnChange(int, func(string))
 	SendRequest(string) ([]byte, error)
 	GetVersion() (string, error)
@@ -28,11 +28,11 @@ type client struct {
 	url string
 }
 
-func NewClient(url string) MetadataClient {
+func NewClient(url string) Client {
 	return &client{url}
 }
 
-func NewClientAndWait(url string) (MetadataClient, error) {
+func NewClientAndWait(url string) (Client, error) {
 	client := &client{url}
 
 	if err := testConnection(client); err != nil {
