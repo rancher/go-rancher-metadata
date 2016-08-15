@@ -7,6 +7,23 @@ import (
 	"net/http"
 )
 
+type MetadataClient interface {
+	OnChange(int, func(string))
+	SendRequest(string) ([]byte, error)
+	GetVersion() (string, error)
+	GetSelfHost() (Host, error)
+	GetSelfContainer() (Container, error)
+	GetSelfServiceByName(string) (Service, error)
+	GetSelfService() (Service, error)
+	GetSelfStack() (Stack, error)
+	GetServices() ([]Service, error)
+	GetStacks() ([]Stack, error)
+	GetContainers() ([]Container, error)
+	GetServiceContainers(string, string) ([]Container, error)
+	GetHosts() ([]Host, error)
+	GetHost(string) (Host, error)
+}
+
 type Client struct {
 	url string
 }
