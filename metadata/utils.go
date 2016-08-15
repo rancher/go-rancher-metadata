@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-func testConnection(mdClient *Client) error {
+func testConnection(mdClient MetadataClient) error {
 	var err error
 	maxTime := 20 * time.Second
 
