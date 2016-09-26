@@ -51,6 +51,7 @@ type Container struct {
 	State       string            `json:"state"`
 	HealthState string            `json:"health_state"`
 	ExternalId  string            `json:"external_id"`
+	StartCount  int               `json:"start_count"`
 }
 
 type Host struct {
