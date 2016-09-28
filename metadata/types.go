@@ -35,6 +35,7 @@ type Service struct {
 	Token       string                 `json:"token"`
 	Fqdn        string                 `json:"fqdn"`
 	HealthCheck HealthCheck            `json:"health_check"`
+	DnsSearch   []string               `json:"dns_search"`
 }
 
 type Container struct {
@@ -55,6 +56,8 @@ type Container struct {
 	StartCount          int               `json:"start_count"`
 	MemoryReservation   int64             `json:"memory_reservation"`
 	MilliCPUReservation int64             `json:"milli_cpu_reservation"`
+	Dns                 []string          `json:"dns"`
+	DnsSearch           []string          `json:"dns_search"`
 }
 
 type Host struct {
