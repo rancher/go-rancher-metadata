@@ -58,6 +58,7 @@ type Container struct {
 	MilliCPUReservation int64             `json:"milli_cpu_reservation"`
 	Dns                 []string          `json:"dns"`
 	DnsSearch           []string          `json:"dns_search"`
+	HealthCheckHosts    []string          `json:"health_check_hosts"`
 }
 
 type Host struct {
