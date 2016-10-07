@@ -17,25 +17,25 @@ type HealthCheck struct {
 }
 
 type Service struct {
-	Scale       int                    `json:"scale"`
-	Name        string                 `json:"name"`
-	StackName   string                 `json:"stack_name"`
-	Kind        string                 `json:"kind"`
-	Hostname    string                 `json:"hostname"`
-	Vip         string                 `json:"vip"`
-	CreateIndex int                    `json:"create_index"`
-	UUID        string                 `json:"uuid"`
-	ExternalIps []string               `json:"external_ips"`
-	Sidekicks   []string               `json:"sidekicks"`
-	Containers  []Container            `json:"containers"`
-	Ports       []string               `json:"ports"`
-	Labels      map[string]string      `json:"labels"`
-	Links       map[string]string      `json:"links"`
-	Metadata    map[string]interface{} `json:"metadata"`
-	Token       string                 `json:"token"`
-	Fqdn        string                 `json:"fqdn"`
-	HealthCheck HealthCheck            `json:"health_check"`
-	DnsSearch   []string               `json:"dns_search"`
+	Scale              int                    `json:"scale"`
+	Name               string                 `json:"name"`
+	StackName          string                 `json:"stack_name"`
+	Kind               string                 `json:"kind"`
+	Hostname           string                 `json:"hostname"`
+	Vip                string                 `json:"vip"`
+	CreateIndex        int                    `json:"create_index"`
+	UUID               string                 `json:"uuid"`
+	ExternalIps        []string               `json:"external_ips"`
+	Sidekicks          []string               `json:"sidekicks"`
+	Containers         []Container            `json:"containers"`
+	Ports              []string               `json:"ports"`
+	Labels             map[string]string      `json:"labels"`
+	Links              map[string]string      `json:"links"`
+	Metadata           map[string]interface{} `json:"metadata"`
+	Token              string                 `json:"token"`
+	Fqdn               string                 `json:"fqdn"`
+	HealthCheck        HealthCheck            `json:"health_check"`
+	PrimaryServiceName string                 `json:"primary_service_name"`
 }
 
 type Container struct {
