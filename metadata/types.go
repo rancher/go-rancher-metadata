@@ -38,27 +38,32 @@ type Service struct {
 }
 
 type Container struct {
-	Name        string            `json:"name"`
-	PrimaryIp   string            `json:"primary_ip"`
-	Ips         []string          `json:"ips"`
-	Ports       []string          `json:"ports"`
-	ServiceName string            `json:"service_name"`
-	StackName   string            `json:"stack_name"`
-	Labels      map[string]string `json:"labels"`
-	CreateIndex int               `json:"create_index"`
-	HostUUID    string            `json:"host_uuid"`
-	UUID        string            `json:"uuid"`
-	State       string            `json:"state"`
-	HealthState string            `json:"health_state"`
-	ExternalId  string            `json:"external_id"`
-	StartCount  int               `json:"start_count"`
+	Name                string            `json:"name"`
+	PrimaryIp           string            `json:"primary_ip"`
+	Ips                 []string          `json:"ips"`
+	Ports               []string          `json:"ports"`
+	ServiceName         string            `json:"service_name"`
+	StackName           string            `json:"stack_name"`
+	Labels              map[string]string `json:"labels"`
+	CreateIndex         int               `json:"create_index"`
+	HostUUID            string            `json:"host_uuid"`
+	UUID                string            `json:"uuid"`
+	State               string            `json:"state"`
+	HealthState         string            `json:"health_state"`
+	ExternalId          string            `json:"external_id"`
+	StartCount          int               `json:"start_count"`
+	MemoryReservation   int64             `json:"memory_reservation"`
+	MilliCPUReservation int64             `json:"milli_cpu_reservation"`
 }
 
 type Host struct {
-	Name     string            `json:"name"`
-	AgentIP  string            `json:"agent_ip"`
-	HostId   int               `json:"host_id"`
-	Labels   map[string]string `json:"labels"`
-	UUID     string            `json:"uuid"`
-	Hostname string            `json:"hostname"`
+	Name           string            `json:"name"`
+	AgentIP        string            `json:"agent_ip"`
+	HostId         int               `json:"host_id"`
+	Labels         map[string]string `json:"labels"`
+	UUID           string            `json:"uuid"`
+	Hostname       string            `json:"hostname"`
+	Memory         int64             `json:"memory"`
+	MilliCPU       int64             `json:"milli_cpu"`
+	LocalStorageMb int64             `json:"local_storage_mb"`
 }
