@@ -40,6 +40,7 @@ type Service struct {
 type Container struct {
 	Name                string            `json:"name"`
 	PrimaryIp           string            `json:"primary_ip"`
+	PrimaryMacAddress   string            `json:"primary_mac_address"`
 	Ips                 []string          `json:"ips"`
 	Ports               []string          `json:"ports"`
 	ServiceName         string            `json:"service_name"`
