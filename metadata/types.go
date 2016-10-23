@@ -36,6 +36,7 @@ type Service struct {
 	Fqdn               string                 `json:"fqdn"`
 	HealthCheck        HealthCheck            `json:"health_check"`
 	PrimaryServiceName string                 `json:"primary_service_name"`
+	LBConfig           LBConfig               `json:"lb_config"`
 }
 
 type Container struct {
@@ -72,4 +73,34 @@ type Host struct {
 	Memory         int64             `json:"memory"`
 	MilliCPU       int64             `json:"milli_cpu"`
 	LocalStorageMb int64             `json:"local_storage_mb"`
+}
+
+type PortRule struct {
+	SourcePort  int    `json:"source_port"`
+	Protocol    string `json:"protocol"`
+	Path        string `json:"path"`
+	Hostname    string `json:"hostname"`
+	Service     string `json:"service"`
+	TargetPort  int    `json:"target_port"`
+	Priority    int    `json:"priority"`
+	BackendName string `json:"backend_name"`
+	Selector    string `json:"selector"`
+}
+
+type LBConfig struct {
+	Certs            []string           `json:"certs"`
+	DefaultCert      string             `json:"default_cert"`
+	PortRules        []PortRule         `json:"port_rules"`
+	Config           string             `json:"config"`
+	StickinessPolicy LBStickinessPolicy `json:"stickiness_policy"`
+}
+
+type LBStickinessPolicy struct {
+	Name     string `json:"name"`
+	Cookie   string `json:"cookie"`
+	Domain   string `json:"domain"`
+	Indirect bool   `json:"indirect"`
+	Nocache  bool   `json:"nocache"`
+	Postonly bool   `json:"postonly"`
+	Mode     string `json:"mode"`
 }
