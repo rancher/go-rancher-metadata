@@ -1,6 +1,7 @@
 package metadata
 
 import (
+	"encoding/json"
 	"fmt"
 	"time"
 
@@ -18,7 +19,6 @@ func (m *client) OnChange(intervalSeconds int, do func(string)) {
 			time.Sleep(interval * time.Second)
 		} else if version == newVersion {
 			logrus.Debug("No changes in metadata version")
-			time.Sleep(interval * time.Second)
 		} else {
 			logrus.Debugf("Metadata Version has been changed. Old version: %s. New version: %s.", version, newVersion)
 			version = newVersion
@@ -28,9 +28,10 @@ func (m *client) OnChange(intervalSeconds int, do func(string)) {
 }
 
 func (m *client) waitVersion(maxWait int, version string) (string, error) {
-	resp, err := m.SendRequest(fmt.Sprintf("/version?wait=true&value=%s&maxWait=%d"))
+	resp, err := m.SendRequest(fmt.Sprintf("/version?wait=true&value=%s&maxWait=%d", version, maxWait))
 	if err != nil {
 		return "", err
 	}
-	return string(resp[:]), nil
+	err = json.Unmarshal(resp, &version)
+	return version, err
 }
