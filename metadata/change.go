@@ -1,6 +1,7 @@
 package metadata
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/Sirupsen/logrus"
@@ -11,7 +12,7 @@ func (m *client) OnChange(intervalSeconds int, do func(string)) {
 	version := "init"
 
 	for {
-		newVersion, err := m.GetVersion()
+		newVersion, err := m.waitVersion(intervalSeconds, version)
 		if err != nil {
 			logrus.Errorf("Error reading metadata version: %v", err)
 			time.Sleep(interval * time.Second)
@@ -24,4 +25,12 @@ func (m *client) OnChange(intervalSeconds int, do func(string)) {
 			do(newVersion)
 		}
 	}
+}
+
+func (m *client) waitVersion(maxWait int, version string) (string, error) {
+	resp, err := m.SendRequest(fmt.Sprintf("/version?wait=true&value=%s&maxWait=%d"))
+	if err != nil {
+		return "", err
+	}
+	return string(resp[:]), nil
 }
