@@ -70,6 +70,7 @@ type Network struct {
 	UUID      string                 `json:"uuid"`
 	Metadata  map[string]interface{} `json:"metadata"`
 	HostPorts bool                   `json:"host_ports"`
+	Default   bool                   `json:"is_default"`
 }
 
 type Host struct {
