@@ -47,6 +47,7 @@ type Container struct {
 	Ips                      []string          `json:"ips"`
 	Ports                    []string          `json:"ports"`
 	ServiceName              string            `json:"service_name"`
+	ServiceIndex             int               `json:"service_index"`
 	StackName                string            `json:"stack_name"`
 	Labels                   map[string]string `json:"labels"`
 	CreateIndex              int               `json:"create_index"`
