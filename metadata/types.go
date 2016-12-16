@@ -65,6 +65,7 @@ type Container struct {
 	NetworkFromContainerUUID string            `json:"network_from_container_uuid"`
 	NetworkUUID              string            `json:"network_uuid"`
 	Links                    map[string]string `json:"links"`
+	System                   bool              `json:"system"`
 }
 
 type Network struct {
