@@ -8,6 +8,7 @@ import (
 )
 
 type Client interface {
+	OnChangeWithError(int, func(string)) error
 	OnChange(int, func(string))
 	SendRequest(string) ([]byte, error)
 	GetVersion() (string, error)
