@@ -6,6 +6,7 @@ type Stack struct {
 	Name            string    `json:"name"`
 	UUID            string    `json:"uuid"`
 	Services        []Service `json:"services"`
+	System          bool      `json:"system"`
 }
 
 type HealthCheck struct {
