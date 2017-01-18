@@ -71,6 +71,7 @@ type Container struct {
 	Links                    map[string]string `json:"links"`
 	System                   bool              `json:"system"`
 	EnvironmentUUID          string            `json:"environment_uuid"`
+	HealthCheck              HealthCheck       `json:"health_check"`
 }
 
 type Network struct {
