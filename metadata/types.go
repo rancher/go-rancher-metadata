@@ -78,6 +78,7 @@ type Container struct {
 type Network struct {
 	Name                string                 `json:"name"`
 	UUID                string                 `json:"uuid"`
+	EnvironmentUUID     string                 `json:"environment_uuid"`
 	Metadata            map[string]interface{} `json:"metadata"`
 	HostPorts           bool                   `json:"host_ports"`
 	Default             bool                   `json:"is_default"`
