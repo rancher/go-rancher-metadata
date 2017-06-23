@@ -10,8 +10,8 @@ package main
 import (
 	"time"
 
-	"github.com/Sirupsen/logrus"
 	"github.com/rancher/go-rancher-metadata/metadata"
+	"github.com/sirupsen/logrus"
 )
 
 const (
