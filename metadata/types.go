@@ -43,6 +43,7 @@ type Service struct {
 	EnvironmentUUID    string                 `json:"environment_uuid"`
 	State              string                 `json:"state"`
 	System             bool                   `json:"system"`
+	EnvironmentName    string                 `json:"environment_name"`
 }
 
 type Container struct {
@@ -74,6 +75,7 @@ type Container struct {
 	System                   bool              `json:"system"`
 	EnvironmentUUID          string            `json:"environment_uuid"`
 	HealthCheck              HealthCheck       `json:"health_check"`
+	EnvironmentName          string            `json:"environment_name"`
 }
 
 type Network struct {
