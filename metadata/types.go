@@ -148,3 +148,19 @@ type NetworkPolicyRule struct {
 	Between *NetworkPolicyRuleBetween `yaml:"between"`
 	Action  string                    `yaml:"action"`
 }
+
+type Region struct {
+	Name string `json:"region_name"`
+}
+
+type Environment struct {
+	Containers []Container `json:"containers"`
+	Hosts      []Host      `json:"hosts"`
+	Name       string      `json:"name"`
+	Networks   []Network   `json:"networks"`
+	RegionName string      `json:"region_name"`
+	Services   []Service   `json:"services"`
+	Stacks     []Stack     `json:"stacks"`
+	UUID       string      `json:"uuid"`
+	Version    string      `json:"version"`
+}

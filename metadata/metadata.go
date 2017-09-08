@@ -13,6 +13,7 @@ type Client interface {
 	OnChange(int, func(string))
 	SendRequest(string) ([]byte, error)
 	GetVersion() (string, error)
+	GetRegionName() (string, error)
 	GetSelfHost() (Host, error)
 	GetSelfContainer() (Container, error)
 	GetSelfServiceByName(string) (Service, error)
@@ -21,6 +22,9 @@ type Client interface {
 	GetServices() ([]Service, error)
 	GetStacks() ([]Stack, error)
 	GetStackByName(string) (Stack, error)
+	GetServiceByRegionEnvironment(string, string, string, string) (Service, error)
+	GetServiceByEnvironment(string, string, string) (Service, error)
+	GetServiceByName(string, string) (Service, error)
 	GetContainers() ([]Container, error)
 	GetServiceContainers(string, string) ([]Container, error)
 	GetHosts() ([]Host, error)
@@ -89,6 +93,14 @@ func (m *client) SendRequest(path string) ([]byte, error) {
 
 func (m *client) GetVersion() (string, error) {
 	resp, err := m.SendRequest("/version")
+	if err != nil {
+		return "", err
+	}
+	return string(resp[:]), nil
+}
+
+func (m *client) GetRegionName() (string, error) {
+	resp, err := m.SendRequest("/region_name")
 	if err != nil {
 		return "", err
 	}
@@ -203,6 +215,48 @@ func (m *client) GetStackByName(name string) (Stack, error) {
 	}
 
 	return stack, nil
+}
+
+func (m *client) GetServiceByRegionEnvironment(regionName string, envName string, stackName string, svcName string) (Service, error) {
+	resp, err := m.SendRequest("/regions/" + regionName + "/environments/" + envName + "/stacks/" + stackName + "/services/" + svcName)
+	var service Service
+	if err != nil {
+		return service, err
+	}
+
+	if err = json.Unmarshal(resp, &service); err != nil {
+		return service, err
+	}
+
+	return service, nil
+}
+
+func (m *client) GetServiceByEnvironment(envName string, stackName string, svcName string) (Service, error) {
+	resp, err := m.SendRequest("/environments/" + envName + "/stacks/" + stackName + "/services/" + svcName)
+	var service Service
+	if err != nil {
+		return service, err
+	}
+
+	if err = json.Unmarshal(resp, &service); err != nil {
+		return service, err
+	}
+
+	return service, nil
+}
+
+func (m *client) GetServiceByName(stackName string, svcName string) (Service, error) {
+	resp, err := m.SendRequest("/stacks/" + stackName + "/services/" + svcName)
+	var service Service
+	if err != nil {
+		return service, err
+	}
+
+	if err = json.Unmarshal(resp, &service); err != nil {
+		return service, err
+	}
+
+	return service, nil
 }
 
 func (m *client) GetContainers() ([]Container, error) {
