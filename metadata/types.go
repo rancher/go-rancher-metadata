@@ -117,11 +117,11 @@ type PortRule struct {
 }
 
 type LBConfig struct {
-	Certs            []string           `json:"certs"`
-	DefaultCert      string             `json:"default_cert"`
-	PortRules        []PortRule         `json:"port_rules"`
-	Config           string             `json:"config"`
-	StickinessPolicy LBStickinessPolicy `json:"stickiness_policy"`
+	CertificateIDs       []string           `json:"certificate_ids"`
+	DefaultCertificateID string             `json:"default_certificate_id"`
+	PortRules            []PortRule         `json:"port_rules"`
+	Config               string             `json:"config"`
+	StickinessPolicy     LBStickinessPolicy `json:"stickiness_policy"`
 }
 
 type LBStickinessPolicy struct {
