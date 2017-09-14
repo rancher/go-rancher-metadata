@@ -104,24 +104,25 @@ type Host struct {
 }
 
 type PortRule struct {
-	SourcePort  int    `json:"source_port"`
-	Protocol    string `json:"protocol"`
-	Path        string `json:"path"`
-	Hostname    string `json:"hostname"`
-	Service     string `json:"service"`
-	TargetPort  int    `json:"target_port"`
-	Priority    int    `json:"priority"`
-	BackendName string `json:"backend_name"`
-	Selector    string `json:"selector"`
-	Container   string `json:"container"`
+	SourcePort    int    `json:"source_port"`
+	Protocol      string `json:"protocol"`
+	Path          string `json:"path"`
+	Hostname      string `json:"hostname"`
+	Service       string `json:"service"`
+	TargetPort    int    `json:"target_port"`
+	Priority      int    `json:"priority"`
+	BackendName   string `json:"backend_name"`
+	Selector      string `json:"selector"`
+	Container     string `json:"container"`
+	ContainerUUID string `json:"container_uuid"`
 }
 
 type LBConfig struct {
-	Certs            []string           `json:"certs"`
-	DefaultCert      string             `json:"default_cert"`
-	PortRules        []PortRule         `json:"port_rules"`
-	Config           string             `json:"config"`
-	StickinessPolicy LBStickinessPolicy `json:"stickiness_policy"`
+	CertificateIDs       []string           `json:"certificate_ids"`
+	DefaultCertificateID string             `json:"default_certificate_id"`
+	PortRules            []PortRule         `json:"port_rules"`
+	Config               string             `json:"config"`
+	StickinessPolicy     LBStickinessPolicy `json:"stickiness_policy"`
 }
 
 type LBStickinessPolicy struct {
