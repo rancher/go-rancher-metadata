@@ -44,6 +44,7 @@ type Service struct {
 	State              string                 `json:"state"`
 	System             bool                   `json:"system"`
 	EnvironmentName    string                 `json:"environment_name"`
+	Selector           string                 `json:"selector"`
 }
 
 type Container struct {
