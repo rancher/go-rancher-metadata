@@ -30,6 +30,8 @@ type Client interface {
 	GetHosts() ([]Host, error)
 	GetHost(string) (Host, error)
 	GetNetworks() ([]Network, error)
+	GetServicesByRegionEnvironment(string, string) ([]Service, error)
+	GetServicesByEnvironment(string) ([]Service, error)
 }
 
 type client struct {
@@ -179,6 +181,32 @@ func (m *client) GetSelfStack() (Stack, error) {
 
 func (m *client) GetServices() ([]Service, error) {
 	resp, err := m.SendRequest("/services")
+	var services []Service
+	if err != nil {
+		return services, err
+	}
+
+	if err = json.Unmarshal(resp, &services); err != nil {
+		return services, err
+	}
+	return services, nil
+}
+
+func (m *client) GetServicesByRegionEnvironment(regionName string, envName string) ([]Service, error) {
+	resp, err := m.SendRequest("/regions/" + regionName + "/environments/" + envName + "/services")
+	var services []Service
+	if err != nil {
+		return services, err
+	}
+
+	if err = json.Unmarshal(resp, &services); err != nil {
+		return services, err
+	}
+	return services, nil
+}
+
+func (m *client) GetServicesByEnvironment(envName string) ([]Service, error) {
+	resp, err := m.SendRequest("/environments/" + envName + "/services")
 	var services []Service
 	if err != nil {
 		return services, err

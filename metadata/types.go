@@ -111,6 +111,8 @@ type PortRule struct {
 	BackendName string `json:"backend_name"`
 	Selector    string `json:"selector"`
 	Container   string `json:"container"`
+	Region      string `json:"region"`
+	Environment string `json:"environment"`
 }
 
 type LBConfig struct {
