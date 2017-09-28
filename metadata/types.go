@@ -102,6 +102,7 @@ type Host struct {
 	MilliCPU        int64             `json:"milli_cpu"`
 	LocalStorageMb  int64             `json:"local_storage_mb"`
 	EnvironmentUUID string            `json:"environment_uuid"`
+	State           string            `json:"state"`
 }
 
 type PortRule struct {
