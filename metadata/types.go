@@ -89,7 +89,9 @@ type Network struct {
 
 type Host struct {
 	Name            string            `json:"name"`
+	State           string            `json:"state"`
 	AgentIP         string            `json:"agent_ip"`
+	AgentState      string            `json:"agent_state"`
 	HostId          int               `json:"host_id"`
 	Labels          map[string]string `json:"labels"`
 	UUID            string            `json:"uuid"`
