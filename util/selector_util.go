@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-//supported protocols
+// supported protocols
 const (
 	NEQ   = "!="
 	EQ    = "="
